@@ -17,7 +17,7 @@ function pickColor(color) {
 }
 
 function pickSize() {
-  var size = Math.floor(Math.random() * 100 + 50)
+  var size = Math.floor(Math.random() * 150 + 50)
   return size;
 }
 
@@ -32,10 +32,11 @@ function setup() {
     var y = random(-height * 1.667, height * 1.667);
     balls[i] = new Ball(x, y, 16, pickColor('random'));
   }
-  playerBall = new Ball(0, 0, 64, pickColor('red'));
-  // for (var i = 0; i < 10; i++) {
-  //   enemyBalls[i] = new Ball(random(-width, width), random(-height, height), pickSize(), pickColor("random"));
-  // }
+  playerBall = new Ball(0, 0, 64, pickColor());
+  for (var i = 0; i < 5; i++) {
+    enemyBalls[i] = new Ball(random(-width, width), random(-height, height), pickSize(), pickColor());
+    fill(pickColor('random'))
+  }
 }
 
 function draw() {
@@ -62,19 +63,26 @@ function draw() {
     ballsArr.push(balls[i]);
     if (playerBall.eats(balls[i])) {
       balls.splice(i, 1, new Ball(random(-width * 1.667, width * 1.667), random(-height * 1.667, height * 1.667), 16, pickColor('random')));
-    }
+    } 
+      // if (enemyBalls[0].eats(balls[i])) {
+      //   balls.splice(i, 1, new Ball(random(-width * 1.667, width * 1.667), random(-height * 1.667, height * 1.667), 16, pickColor('random')));
+      // }
   }
   for (var i = enemyBalls.length - 1; i >= 0; i--) {
     enemyBalls[i].show();
-    enemyBalls[i].translate;
     if (playerBall.eats(enemyBalls[i])) {
       enemyBalls.splice(i, 1);
     } else if (enemyBalls[i].eats(playerBall)) {
       console.log("You died");
-    }
+      // balls.push(playerBall);
+    } 
+    // else if (enemyBalls[i].eats(enemyBalls)){
+
+    // }
   }
   
   playerBall.show();
+  // fill(pickColor('red')) //Makes everything same color;
   playerBall.update();
 
   // console.log(playerBall.r);

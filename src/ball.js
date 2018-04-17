@@ -29,43 +29,36 @@ function Ball(x, y, r, color) {
     } else if (playerBall.pos.y + playerBall.r * 0.75 > boundries && mouseY > 300) {
       newVel.setMag(0);
     }
-
-    // var enemyVel = (playerBall.pos - enemyBalls.pos);
-    // enemyBalls.vel = enemyVel;
-    // if (enemyBalls.r > playerBall.r){
-    //   enemyBalls.vel.add(enemyBalls);
-    // }
     
     this.vel.lerp(newVel, 0.1);
     this.pos.add(this.vel);
-
   }
 
   this.eats = function(other) {
     if (this.r > other.r * 1.1) {
     var d = p5.Vector.dist(this.pos, other.pos);
     if (d < this.r + other.r * 0.1) {
-      var sum = PI * this.r * this.r + PI * other.r * other.r;
-      this.r = sqrt(sum / PI);
+      var sum = Math.PI * this.r * this.r + PI * other.r * other.r;
+      this.r = sqrt(sum / Math.PI);
       this.color = other.color;
       return true;
     } else {
       return false;
       } 
     } else if (this.r * 1.3 < other.r){
-        var d = p5.Vector.dist(this.pos, other.pos);
+        d = p5.Vector.dist(this.pos, other.pos);
         if (d < this.r + other.r * 0.1) {
-          sum = PI * this.r * this.r + PI * other.r * other.r;
-          other.r = sqrt(sum / PI);
+          sum = Math.PI * this.r * this.r + PI * other.r * other.r;
+          other.r = sqrt(sum / Math.PI);
           return true;
       } else {
           return false;
       }
-    }
+    } 
   }
 
   this.show = function() {
     ellipse(this.pos.x, this.pos.y, this.r*2, this.r*2);
-    fill(pickColor(color));
+    // fill(pickColor(color));
   }
 }
