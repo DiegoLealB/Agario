@@ -4,6 +4,7 @@ body {
   background-image: url("background.jpg");
   background-repeat: no-repeat;
   background-position: center;
+  overflow: hidden;
 }
 
 #canvas {
@@ -23,4 +24,9 @@ body {
   border: 1px solid white;
   display: block;
   margin: 10px auto;
+}
+
+#sizeCounter {
+  display: block;
+  margin: 20px 40% 0 40%;
 }
