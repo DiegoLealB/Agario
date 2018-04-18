@@ -1,7 +1,6 @@
-function Ball(x, y, r, color) {
+function Ball(x, y, r) {
   this.pos = createVector(x, y);
   this.r = r;
-  this.color = color;
   this.vel = createVector(0,0);
 
   this.update = function() {
@@ -35,30 +34,21 @@ function Ball(x, y, r, color) {
   }
 
   this.eats = function(other) {
-    if (this.r > other.r * 1.1) {
-    var d = p5.Vector.dist(this.pos, other.pos);
-    if (d < this.r + other.r * 0.1) {
-      var sum = Math.PI * this.r * this.r + PI * other.r * other.r;
-      this.r = sqrt(sum / Math.PI);
-      this.color = other.color;
-      return true;
-    } else {
-      return false;
-      } 
-    } else if (this.r * 1.3 < other.r){
-        d = p5.Vector.dist(this.pos, other.pos);
-        if (d < this.r + other.r * 0.1) {
-          sum = Math.PI * this.r * this.r + PI * other.r * other.r;
-          other.r = sqrt(sum / Math.PI);
-          return true;
+    if (this.r > other.r * 1.15) {
+      var d = p5.Vector.dist(this.pos, other.pos);
+      if (d < this.r + other.r * 0.1) {
+        var sum = Math.PI * this.r * this.r + Math.PI * other.r * other.r;
+        this.r = sqrt(sum / Math.PI);
+        return true;
       } else {
-          return false;
-      }
+        return false;
+        } 
     } 
-  }
+  } 
+  
 
   this.show = function() {
-    ellipse(this.pos.x, this.pos.y, this.r*2, this.r*2);
+    ellipse(this.pos.x, this.pos.y, this.r * 2, this.r * 2);
     // fill(pickColor(color));
   }
 }
