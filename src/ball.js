@@ -54,7 +54,6 @@ function Ball(x, y, r) {
 
   this.show = function() {
     ellipse(this.pos.x, this.pos.y, this.r * 2, this.r * 2);
-    // fill(pickColor(color));
-    strokeWeight(5)
+    fill(pickColor('rgb(155, 0, 155)'));
   }
 }

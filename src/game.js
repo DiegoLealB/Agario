@@ -6,7 +6,7 @@ var grids = [];
 var zoom = 0.50; //Changed default zoom here for zoom in effect when loading the game
 var ballQuantity = 100;
 var worldScale = 1.667; //Adjust this by whatever you want the play area to be * 600, also need to change boundries var
-var enemiesQuantity = 15;
+var enemiesQuantity = 10;
 
 function startGame() {
   enemyBalls.splice(0, enemyBalls.length);
@@ -17,7 +17,6 @@ function startGame() {
   
   while (enemyBalls.length < enemiesQuantity) {
     var isOverlapping = false;
-    enemyBall = '';
     enemyBall = new Enemy(random(-width * worldScale, width * worldScale), random(-height * worldScale, height * worldScale), pickSize(), pickColor('random'));
     
     for (var i = 0; i < enemyBalls.length; i++) {
@@ -127,14 +126,16 @@ function draw() {
     } else if (enemyBalls[i].eats(playerBall)){
       playerBallArr.splice(0, 1);
     }
-    // for (var j = enemyBalls.length - 1; j >= 0; j--) {
-    //   if (enemyBalls[j].eats(enemyBalls[i])) {
-    //     enemyBalls[i].splice(i, 1);
-    //     for (var k = 0; k < enemiesQuantity; k++) {
-    //       enemyBalls.push(enemyBall = new Enemy(random(-width * worldScale, width * worldScale), random(-height * worldScale, height * worldScale), pickSize(), pickColor('random')));
-    //     }
-    //   }
-    // }
+    for (var j = enemyBalls.length - 1; j >= 0; j--) {
+      if (enemyBalls[i] !== undefined && enemyBalls[j] !== undefined){
+        if (enemyBalls[j].eats(enemyBalls[i])) {
+          for (var k = 0; k < enemiesQuantity; k++) {
+            enemyBalls[i] = new Enemy(random(-width * worldScale, width * worldScale), random(-height * worldScale, height * worldScale), pickSize(), pickColor('random'));
+          }
+          enemyBalls[i].splice(i, 1);
+        }
+      }
+    }
   }
 
   for (var i = balls.length-1; i >= 0; i--) {
@@ -152,14 +153,14 @@ function draw() {
           balls.push(new Ball(random(-width * worldScale, width * worldScale), random(-height * worldScale, height * worldScale), 16));
         }
       }
+      else if (enemyBall.eats(balls[i])) {
+        balls.splice(i, 1);
+        for (var j = 0; j < ballQuantity - balls.length; j ++) {
+          balls.push(new Ball(random(-width * worldScale, width * worldScale), random(-height * worldScale, height * worldScale), 16));
+        }
+    }
     }
   }
-    //   else if (enemyBall.eats(balls[i])) {
-    //     balls.splice(i, 1);
-    //     for (var j = 0; j < ballQuantity - balls.length; j ++) {
-    //       balls.push(new Ball(random(-width * worldScale, width * worldScale), random(-height * worldScale, height * worldScale), 16));
-    //     }
-    // }
     
     // else if (playerBall.eats(enemyBalls[j])){
     //   enemyBalls.splice(j, 1);
@@ -194,6 +195,4 @@ function draw() {
   // console.log(playerBall.pos.x);
   // console.log(playerBall.pos.y);
   // console.log(playerBall.r);
-
-  
 }
