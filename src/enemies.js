@@ -31,7 +31,7 @@ function Enemy(x, y, r) {
     var d = p5.Vector.dist(this.pos, other.pos);
     if (this.r > other.r * 1.15){
       if (d < this.r * 3 + other.r * 3){
-        this.pos.add((other.pos.x - this.pos.x)/300, (other.pos.y - this.pos.y)/300);
+        this.pos.add((other.pos.x - this.pos.x)/this.r, (other.pos.y - this.pos.y)/this.r);
       } 
     } 
     else {

@@ -4,7 +4,7 @@ var enemyBalls = [];
 var balls = [];
 var grids = [];
 var zoom = 0.50; //Changed default zoom here for zoom in effect when loading the game
-var playerSize = 299;
+var playerSize = 100;
 var ballQuantity = 300;
 var enemiesQuantity = 20;
 boundries = 2000;
@@ -25,7 +25,7 @@ function startGame() {
     enemyBall = new Enemy(
       random(-width * worldScale, width * worldScale),
       random(-height * worldScale, height * worldScale),
-      pickSize(150));
+      pickSize(200));
 
     if ((enemyBall.pos.x < -200 || enemyBall.pos.x > 200) && 
     (enemyBall.pos.y < -200 || enemyBall.pos.y > 200)) {
@@ -156,7 +156,6 @@ function setup() {
 }
 
 function draw() {
-  
   var r = rSlider.value();
   var g = gSlider.value();
   var b = bSlider.value();
@@ -183,7 +182,9 @@ function draw() {
   }
 
   var i = collision();
-      
+  
+  // var massCounter = createElement('h2', 'Mass: ' + Math.floor(playerBall.r));
+  // massCounter.position(300, 300);
       
   for (var i = 0; i < enemyBalls.length; i++){
     enemyBalls[i].show();
