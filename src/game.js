@@ -6,13 +6,11 @@ var grids = [];
 var zoom = 0.50; //Changed default zoom here for zoom in effect when loading the game
 var playerSize = 100;
 var ballQuantity = 300;
-var enemiesQuantity = 20;
+var enemiesQuantity = 15;
 boundries = 2000;
 worldScale = boundries / 600;
 
 function startGame() {
-  // var enemiesSlider = createSlider(5, 30, 10);
-
   enemyBalls.splice(0, enemyBalls.length);
   playerBallArr.splice(0, 1);
 
@@ -25,7 +23,7 @@ function startGame() {
     enemyBall = new Enemy(
       random(-width * worldScale, width * worldScale),
       random(-height * worldScale, height * worldScale),
-      pickSize(200));
+      pickSize(150));
 
     if ((enemyBall.pos.x < -200 || enemyBall.pos.x > 200) && 
     (enemyBall.pos.y < -200 || enemyBall.pos.y > 200)) {
@@ -135,7 +133,7 @@ function collision() {
 }
 
 function setup() {
-  alert("Eat all of the enemies or become the largest ball to win!")
+  alert("Eat all of the enemies or cuadruple your size to win")
   var canvas = createCanvas(600, 600);
   canvas.style('display', 'block');
   canvas.style('margin', '20px auto');
@@ -182,9 +180,6 @@ function draw() {
   }
 
   var i = collision();
-  
-  // var massCounter = createElement('h2', 'Mass: ' + Math.floor(playerBall.r));
-  // massCounter.position(300, 300);
       
   for (var i = 0; i < enemyBalls.length; i++){
     enemyBalls[i].show();
@@ -196,8 +191,6 @@ function draw() {
     playerBallArr[0].update();
   }
   
-  // fill(pickColor('')) //Makes everything same color;
-
   // --------------Tests----------------
   // console.log(balls.length);
   // console.log(frameRate())

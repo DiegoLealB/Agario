@@ -28,14 +28,12 @@ function Ball(x, y, r) {
 
     if (playerBall.r < 1) {
       newVel.setMag(0);
-      rSlider.value(Math.floor(Math.random() * 255));
-      gSlider.value(Math.floor(Math.random() * 255));
-      bSlider.value(Math.floor(Math.random() * 255));
-      aSlider.value((Math.random() * 10) / 10);
     } 
+   
     if ((playerBall.r > 300 && playerBall.r < 500) || enemyBalls.length === 0) {
       alert("You Win!");
       playerBall.r = 1000;
+      newVel.setMag(10);
     }
     
     this.vel.lerp(newVel, 0.1);
