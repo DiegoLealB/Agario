@@ -8,9 +8,9 @@ function Ball(x, y, r) {
     
     if ((mouseX >= 0 && mouseX <= width) && (mouseY >= 0 && mouseY <= height)) {
       if (p5.Vector.mag(newVel) <= 200) {
-        newVel.setMag(p5.Vector.mag(newVel) / 66.66);
+        newVel.setMag(p5.Vector.mag(newVel) / 50);
       } else {
-          newVel.setMag(15);
+          newVel.setMag(4);
       }
     } else {
       newVel.setMag(0);
@@ -33,9 +33,9 @@ function Ball(x, y, r) {
       bSlider.value(Math.floor(Math.random() * 255));
       aSlider.value((Math.random() * 10) / 10);
     } 
-    if (playerBall.r > 300 || enemyBalls.length === 0) {
+    if ((playerBall.r > 300 && playerBall.r < 500) || enemyBalls.length === 0) {
       alert("You Win!");
-      playerBall.r = 0;
+      playerBall.r = 1000;
     }
     
     this.vel.lerp(newVel, 0.1);
