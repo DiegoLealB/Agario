@@ -11,7 +11,7 @@ body {
   background-color: rgb(255, 255, 255);
   border: 1px solid black;
   display: block;
-  margin: 20px auto 0 auto;
+  margin: 0 auto;
 }
 
 #start-button {
@@ -23,10 +23,24 @@ body {
   color: #FFFFFF;
   border: 1px solid white;
   display: block;
-  margin: 10px auto;
+  margin: 0 auto;
 }
 
 #sizeCounter {
   display: block;
-  margin: 20px 40% 0 40%;
+  margin: 0 40%;
+}
+
+#rgba {
+  position: relative;
+  top: 5px;
+  left: 15px;
+  color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 100px;
+  background-color: black;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 20px;
 }

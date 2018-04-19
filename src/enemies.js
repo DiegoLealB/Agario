@@ -1,10 +1,11 @@
-function Enemy(x, y, r, color) {
+function Enemy(x, y, r) {
   this.pos = createVector(x, y);
   this.r = r;
-  this.color = color;
   this.vel = createVector(0,0);
 
   this.update = function() {
+    this.move(playerBall);
+    this.move(enemyBall);
   }
 
   this.eats = function(other) {
@@ -34,31 +35,23 @@ function Enemy(x, y, r, color) {
       } 
     } 
     else {
-      this.pos.x = this.pos.x + random(-5, 5);
-      this.pos.y = this.pos.y + random(-5, 5);
+      if (d < this.r * 4 + other.r * 3) {
+        this.pos.sub((other.pos.x - this.pos.x) * 2/ d, (other.pos.y - this.pos.y) * 2/ d);
+      }      
     }
-    // else {
-    //   if (this.pos.x - this.r * 0.75 < -boundries) {
-    //     this.pos.x = playerBall.pos.x - this.pos.x;
-    //   } else if (this.pos.x + this.r * 0.75 > boundries) {
-    //     this.pos.x = playerBall.pos.x - this.pos.x;
-    //   } else if (this.pos.y - this.r * 0.75 < -boundries) {
-    //     this.pos.y = playerBall.pos.y - this.pos.y;
-    //   } else if (this.pos.y + this.r * 0.75 > boundries) {
-    //     this.pos.y = playerBall.pos.y - this.pos.y;
-    //   }
-    // }
-    // else {
-    //   this.pos.add((this.pos.x - other.pos.x)/300, (this.pos.y - other.pos.y)/300);
-    //   if ((this.pos.x + this.r < -boundries || this.pos.x + this.r > boundries) || (this.pos.y + this.r < -boundries || this.pos.y + this.r > boundries)){
-    //     this.pos.sub((this.pos.x)/300, (this.pos.y)/300);
-    //   }
-    // }
+
+    if (this.pos.x - this.r * 0.75 < -boundries){
+      this.pos.x+= 5;
+    } else if (this.pos.x + this.r * 0.75 > boundries) {
+      this.pos.x-= 5;
+    } else if (this.pos.y - this.r * 0.75 < -boundries) {
+      this.pos.y+= 5;
+    } else if (this.pos.y + this.r * 0.75 > boundries) {
+      this.pos.y-= 5;
+    }
   }
 
   this.show = function() {
     ellipse(this.pos.x, this.pos.y, this.r * 2, this.r * 2);
-    push();
-    fill(pickColor('rgb(200, 50, 150)'));
   }
 }
