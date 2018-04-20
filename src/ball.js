@@ -32,7 +32,7 @@ function Ball(x, y, r) {
    
     if ((playerBall.r > 300 && playerBall.r < 500) || enemyBalls.length === 0) {
       alert("You Win!");
-      playerBall.r = 1000;
+      playerBall.r = 501;
       newVel.setMag(15);
     }
     
@@ -59,6 +59,7 @@ function Ball(x, y, r) {
     translate(this.pos.x, this.pos.y);
     var xOff = 0;
     var yOff = 0;
+    
     beginShape();
     for (var a = 0; a < TWO_PI; a += 0.1) {
       var offset = map(noise(xOff, yOff), 0, 1, 0, this.r / 10);
@@ -66,8 +67,8 @@ function Ball(x, y, r) {
       var x = r * cos(a);
       var y = r * sin(a);
       vertex(x, y);
-      xOff += random(0, 1.5);
-      yOff += random(0, 1.5);
+      xOff += random(0, 1);
+      yOff += random(0, 1);
     }
     endShape();
     pop();

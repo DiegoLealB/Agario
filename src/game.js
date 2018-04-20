@@ -25,8 +25,8 @@ function startGame() {
       random(-height * worldScale, height * worldScale),
       pickSize(150));
 
-    if ((enemyBall.pos.x < -200 || enemyBall.pos.x > 200) && 
-    (enemyBall.pos.y < -200 || enemyBall.pos.y > 200)) {
+    if ((enemyBall.pos.x < -300 || enemyBall.pos.x > 300) && 
+    (enemyBall.pos.y < -300 || enemyBall.pos.y > 300)) {
       isOverlapping = false;
     }
 
@@ -143,10 +143,10 @@ function setup() {
   buttonStyles();
   drawGrid();
 
-  rSlider = createSlider(0, 255, 127);
-  gSlider = createSlider(0, 255, 0);
-  bSlider = createSlider(0, 255, 127);
-  aSlider = createSlider(0, 1, 0.8, 0.05);
+  rSlider = createSlider(0, 255, 255);
+  gSlider = createSlider(0, 255, 255);
+  bSlider = createSlider(0, 255, 255);
+  aSlider = createSlider(0, 1, 1, 0.05);
   rSlider.position(10, 40);
   gSlider.position(10, 65);
   bSlider.position(10, 90);
