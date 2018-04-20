@@ -7,7 +7,7 @@ function Grid(x, y, w) {
     var x = this.x * w - boundries;
     var y = this.y * w - boundries;
     push();
-    stroke(181);
+    stroke(100);
     line(x    , y    , x + w, y    );
     line(x + w, y    , x + w, y + w);
     line(x + w, y + w, x    , y + w);

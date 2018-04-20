@@ -33,7 +33,7 @@ function Ball(x, y, r) {
     if ((playerBall.r > 300 && playerBall.r < 500) || enemyBalls.length === 0) {
       alert("You Win!");
       playerBall.r = 1000;
-      newVel.setMag(10);
+      newVel.setMag(15);
     }
     
     this.vel.lerp(newVel, 0.1);
@@ -41,7 +41,7 @@ function Ball(x, y, r) {
   }
 
   this.eats = function(other) {
-    if (this.r > other.r * 1.15) {
+    if (this.r > other.r * 1.10) {
       var d = p5.Vector.dist(this.pos, other.pos);
       if (d < this.r + other.r * 0.1) {
         var sum = PI * this.r * this.r + PI * other.r * other.r;
@@ -55,6 +55,23 @@ function Ball(x, y, r) {
   
 
   this.show = function() {
-    ellipse(this.pos.x, this.pos.y, this.r * 2, this.r * 2);
+    push();
+    translate(this.pos.x, this.pos.y);
+    var xOff = 0;
+    var yOff = 0;
+    beginShape();
+    for (var a = 0; a < TWO_PI; a += 0.1) {
+      var offset = map(noise(xOff, yOff), 0, 1, 0, this.r / 10);
+      var r = this.r + offset;
+      var x = r * cos(a);
+      var y = r * sin(a);
+      vertex(x, y);
+      xOff += random(0, 1.5);
+      yOff += random(0, 1.5);
+    }
+    endShape();
+    pop();
+    stroke(255);
+    strokeWeight(1);
   }
 }

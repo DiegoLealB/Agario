@@ -68,7 +68,7 @@ function buttonStyles() {
 }
 
 function drawGrid() {
-  var w = 200;
+  var w = 400;
   var rows = floor(600 * worldScale * 2 / w);
   var cols = floor(600 * worldScale * 2 / w);
   for (var x = 0; x < rows; x++) {
@@ -88,7 +88,7 @@ function collision() {
       playerBallArr.splice(0, 1);
     }
     for (var j = enemyBalls.length - 1; j >= 0; j--) {
-      if (enemyBalls[i] !== undefined && enemyBalls[j] !== undefined) { //Check for empty values in array
+      if (enemyBalls[i] !== undefined && enemyBalls[j] !== undefined) { //Checks for empty values in array
         if (enemyBalls[j].eats(enemyBalls[i])) {
           enemyBalls[i].splice(i, 1);
         }
@@ -133,7 +133,7 @@ function collision() {
 }
 
 function setup() {
-  alert("Eat all of the enemies or cuadruple your size to win")
+  alert("Eat all of the enemies or triple your size to win")
   var canvas = createCanvas(600, 600);
   canvas.style('display', 'block');
   canvas.style('margin', '20px auto');
@@ -154,13 +154,14 @@ function setup() {
 }
 
 function draw() {
+  background(0);
+
   var r = rSlider.value();
   var g = gSlider.value();
   var b = bSlider.value();
   var a = aSlider.value();
   fill('rgba(' + r + ',' + g + ',' + b + ',' + a + ')');
 
-  background(255);
   translate(width/2, height/2); //Set canvas origin to center of the canvas
   
   if (playerBall.r !== 0) {
@@ -190,7 +191,7 @@ function draw() {
     playerBallArr[0].show();
     playerBallArr[0].update();
   }
-  
+
   // --------------Tests----------------
   // console.log(balls.length);
   // console.log(frameRate())

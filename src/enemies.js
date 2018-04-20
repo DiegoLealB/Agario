@@ -15,12 +15,6 @@ function Enemy(x, y, r) {
         var sum = PI * this.r * this.r + PI * other.r * other.r;
         this.r = sqrt(sum / PI);
         other.r = 0;
-        
-        // if (this.r < 300) {
-        //   return true;
-        // } else {
-        //   return false;
-        // }
       } else {
         return false;
         } 
@@ -30,8 +24,8 @@ function Enemy(x, y, r) {
   this.move = function(other) {
     var d = p5.Vector.dist(this.pos, other.pos);
     if (this.r > other.r * 1.15){
-      if (d < this.r * 3 + other.r * 3){
-        this.pos.add((other.pos.x - this.pos.x)/this.r, (other.pos.y - this.pos.y)/this.r);
+      if (d < this.r * 4 + other.r * 3){
+        this.pos.add((other.pos.x - this.pos.x) * 1.25/this.r, (other.pos.y - this.pos.y) * 1.25/this.r);
       } 
     } 
     else {
