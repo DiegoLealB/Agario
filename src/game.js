@@ -4,10 +4,10 @@ var enemyBalls = [];
 var balls = [];
 var grids = [];
 var zoom = 0.50; //Changed default zoom here for zoom in effect when loading the game
-var playerSize = 100;
-var ballQuantity = 300;
-var enemiesQuantity = 15;
-boundries = 2000;
+const playerSize = 100;
+const ballQuantity = 300;
+const enemiesQuantity = 15;
+boundries = 5000;
 worldScale = boundries / 600;
 
 function startGame() {
@@ -49,8 +49,16 @@ function startGame() {
 }
 
 function pickSize(size) {
-  randomSize = Math.floor(Math.random() * size + 32);
+  randomSize = Math.floor(Math.random() * size + 16);
   return randomSize;
+}
+
+function randomColor() {
+  let r = Math.floor(Math.random() * 255)
+  let g = Math.floor(Math.random() * 255)
+  let b = Math.floor(Math.random() * 255)
+  const color = rgb(r, g, b);
+  return color;
 }
 
 function buttonStyles() {
@@ -133,20 +141,21 @@ function collision() {
 }
 
 function setup() {
-  alert("Eat all of the enemies or triple your size to win")
+  alert("Eat all of the enemies or get to a mass of 300 to win")
   var canvas = createCanvas(600, 600);
   canvas.style('display', 'block');
   canvas.style('margin', '20px auto');
   canvas.style('border', '1px solid black');  
+  
 
   startGame();
   buttonStyles();
   drawGrid();
 
-  rSlider = createSlider(0, 255, 255);
-  gSlider = createSlider(0, 255, 255);
-  bSlider = createSlider(0, 255, 255);
-  aSlider = createSlider(0, 1, 1, 0.05);
+  rSlider = createSlider(0, 255, 230);
+  gSlider = createSlider(0, 255, 0);
+  bSlider = createSlider(0, 255, 230);
+  aSlider = createSlider(0, 1, 0.7, 0.05);
   rSlider.position(10, 40);
   gSlider.position(10, 65);
   bSlider.position(10, 90);
@@ -155,6 +164,12 @@ function setup() {
 
 function draw() {
   background(0);
+
+  push()
+  stroke(255);
+  fill(255);
+  text("Mass:" + Math.floor(playerBall.r), 0, 10)
+  pop();
 
   var r = rSlider.value();
   var g = gSlider.value();
@@ -183,11 +198,16 @@ function draw() {
   var i = collision();
       
   for (var i = 0; i < enemyBalls.length; i++){
+    push();
+    fill('rgba(255, 255, 255, 0.7)');
     enemyBalls[i].show();
     enemyBalls[i].update();
+    pop();
   }
   
   if (playerBallArr.length > 0) {
+    // push()
+    // fill()
     playerBallArr[0].show();
     playerBallArr[0].update();
   }

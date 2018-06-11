@@ -8,9 +8,9 @@ function Ball(x, y, r) {
     
     if ((mouseX >= 0 && mouseX <= width) && (mouseY >= 0 && mouseY <= height)) {
       if (p5.Vector.mag(newVel) <= 200) {
-        newVel.setMag(p5.Vector.mag(newVel) / 50);
+        newVel.setMag(p5.Vector.mag(newVel) / 25);
       } else {
-          newVel.setMag(4);
+          newVel.setMag(8);
       }
     } else {
       newVel.setMag(0);
@@ -24,6 +24,8 @@ function Ball(x, y, r) {
       newVel.setMag(0);
     } else if (playerBall.pos.y + playerBall.r * 0.75 > boundries && mouseY > height/2) {
       newVel.setMag(0);
+    } else {
+      cursor(CROSS);
     }
 
     if (playerBall.r < 1) {
@@ -67,8 +69,8 @@ function Ball(x, y, r) {
       var x = r * cos(a);
       var y = r * sin(a);
       vertex(x, y);
-      xOff += random(0, 1);
-      yOff += random(0, 1);
+      xOff += random(0, 0.25);
+      yOff += random(0, 0.25);
     }
     endShape();
     pop();
