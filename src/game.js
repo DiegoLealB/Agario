@@ -6,8 +6,8 @@ var grids = [];
 var zoom = 0.50; //Changed default zoom here for zoom in effect when loading the game
 const playerSize = 100;
 const ballQuantity = 300;
-const enemiesQuantity = 15;
-boundries = 5000;
+const enemiesQuantity = 25;
+boundries = 3000;
 worldScale = boundries / 600;
 
 function startGame() {
@@ -23,7 +23,7 @@ function startGame() {
     enemyBall = new Enemy(
       random(-width * worldScale, width * worldScale),
       random(-height * worldScale, height * worldScale),
-      pickSize(150));
+      pickSize(180));
 
     if ((enemyBall.pos.x < -300 || enemyBall.pos.x > 300) && 
     (enemyBall.pos.y < -300 || enemyBall.pos.y > 300)) {

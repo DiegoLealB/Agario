@@ -8,9 +8,9 @@ function Ball(x, y, r) {
     
     if ((mouseX >= 0 && mouseX <= width) && (mouseY >= 0 && mouseY <= height)) {
       if (p5.Vector.mag(newVel) <= 200) {
-        newVel.setMag(p5.Vector.mag(newVel) / 25);
+        newVel.setMag(p5.Vector.mag(newVel) / 20);
       } else {
-          newVel.setMag(8);
+          newVel.setMag(10);
       }
     } else {
       newVel.setMag(0);

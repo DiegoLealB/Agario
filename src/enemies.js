@@ -26,10 +26,10 @@ function Enemy(x, y, r) {
     if (this.r > other.r * 1.10) {
       if (d < this.r * 4 + other.r * 3) {
         this.pos.add((other.pos.x - this.pos.x) / this.r, (other.pos.y - this.pos.y) / this.r);
-      }
+      } 
     } else {
       if (d < this.r * 4 + other.r * 3) {
-        this.pos.sub((other.pos.x - this.pos.x) / this.r, (other.pos.y - this.pos.y) / this.r);
+        this.pos.sub((other.pos.x - this.pos.x) / 2 / this.r, (other.pos.y - this.pos.y) / this.r);
       }
     }
 
