@@ -6,7 +6,7 @@ var grids = [];
 var zoom = 0.50; //Changed default zoom here for zoom in effect when loading the game
 const playerSize = 100;
 const ballQuantity = 300;
-const enemiesQuantity = 25;
+const enemiesQuantity = 20;
 boundries = 3000;
 worldScale = boundries / 600;
 
